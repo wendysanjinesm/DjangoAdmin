@@ -1,4 +1,6 @@
 {% load static %}
+
+{% if user.is_authenticated %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -577,3 +579,7 @@
 </body>
 
 </html>
+{% else %}
+<h1>No esta authenticado </h1>
+<a class="btn btn-danger" href="/members/logout_user" role="button">Iniciar Sesion</a>
+{% endif %}
