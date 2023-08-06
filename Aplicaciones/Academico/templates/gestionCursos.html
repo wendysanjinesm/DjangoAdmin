@@ -1,0 +1,53 @@
+{% extends "./index_master.html" %}      
+
+{% block title %} Gestion de Cursos {% endblock  %}
+
+{% block body %}      
+<div class="right_col" role="main">
+ <div class="row">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong class="text-dark">{{ message }}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+    </div>
+    <div class="row">
+        <h1>Listado de Cursos</h1>
+        </div>
+        <div class="row">
+       
+        
+        <a class="btn btn-primary" href="/nuevoCurso" role="button">Nuevo Curso</a>
+         <div class="table-responsive">
+             <table class="table table-striped py-2">
+                 <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Créditos</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    {% for c in cursos %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{c.codigo}}</td>
+                          
+                            <td>{{c.nombre}}</td>
+                            <td>{{c.creditos}}</td>
+                            <td><a href="edicionCurso/{{c.codigo}}" class="btn btn-info">Editar</a></td>
+                            <td><a href="eliminarCurso/{{c.codigo}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+                        </tr>
+                    {% endfor %}
+                 </tbody>
+             </table>
+         </div>
+    </div>
+</div>
+
+{% endblock  %}  
