@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Curso
+from .models import Curso,Event
 from django.contrib import messages
 
 # Create your views here.
@@ -41,3 +41,7 @@ def editarCurso(request,codigo):
 def edicionCurso(request,codigo):
     curso=Curso.objects.get(codigo=codigo)
     return render(request,'edicionCurso.html', { "curso": curso })
+
+def listEvents(request):
+    event_list = Event.objects.all()
+    return render(request,"events.html",{ "event_list": event_list })

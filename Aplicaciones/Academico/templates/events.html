@@ -1,0 +1,15 @@
+{% extends "./index_master.html" %}      
+
+{% block title %} Listar Eventos {% endblock  %}
+
+{% block body %}
+{% for event in event_list %}
+    {{event.name}} </br>
+    Atendees: 
+    {%  for temp in event.attendees.all%}
+    {{temp.first_name}}  {{temp.last_name}}
+    {% endfor %}
+</br>
+{% endfor %}
+
+{% endblock  %}
