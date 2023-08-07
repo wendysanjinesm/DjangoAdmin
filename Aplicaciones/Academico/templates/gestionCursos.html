@@ -13,14 +13,16 @@
     </div>
     {% endfor %}
     {% endif %}
+   
     </div>
     <div class="row">
         <h1>Listado de Cursos</h1>
         </div>
         <div class="row">
        
-        
+        {% if perms.Academico.add_curso %}
         <a class="btn btn-primary" href="/nuevoCurso" role="button">Nuevo Curso</a>
+        {% endif %}
          <div class="table-responsive">
              <table class="table table-striped py-2">
                  <thead>
@@ -40,8 +42,16 @@
                           
                             <td>{{c.nombre}}</td>
                             <td>{{c.creditos}}</td>
-                            <td><a href="edicionCurso/{{c.codigo}}" class="btn btn-info">Editar</a></td>
-                            <td><a href="eliminarCurso/{{c.codigo}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+                            <td>
+                                {% if perms.Academico.change_curso %}
+                                <a href="edicionCurso/{{c.codigo}}" class="btn btn-info">Editar</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if perms.Academico.delete_curso %}
+                                <a href="eliminarCurso/{{c.codigo}}" class="btn btn-danger btnEliminacion">Eliminar</a>
+                                {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
                  </tbody>
